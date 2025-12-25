@@ -47,8 +47,8 @@ VAMS/
 │   └── person_tracker.py        # Person tracking with YOLO
 ├── processing/                  # Video processing pipeline
 │   └── video_processor.py       # Main orchestrator
-├── visualization/               # Dashboard rendering
-│   └── dashboard.py             # Advanced overlay graphics
+├── visualization/               # Visual rendering
+│   └── visuals.py               # Advanced overlay graphics
 └── utils/                       # Helper utilities
     ├── drawing.py               # Text rendering functions
     └── geometry.py              # Geometric calculations

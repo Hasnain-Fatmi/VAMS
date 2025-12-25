@@ -48,17 +48,52 @@ FOURCC = 'XVID'  # Video codec
 DEFAULT_FPS = 25  # Default FPS if video metadata is unavailable
 
 # ========================
-# DASHBOARD COLORS (BGR)
+# VISUAL THEME - UNIQUE PROFESSIONAL STYLE
 # ========================
-COLOR_BG = (0, 0, 0)           # Black background
-COLOR_BORDER = (255, 255, 255) # White border
-COLOR_FIGHT = (0, 0, 255)      # Red for fight
-COLOR_SAFE = (0, 255, 0)       # Green for safe
-COLOR_PERSON = (255, 0, 0)     # Blue for person labels
-COLOR_TEXT_BG = (255, 255, 255) # White background for text
 
-# ========================
-# DASHBOARD SETTINGS
-# ========================
-DASHBOARD_ALPHA = 0.8  # Transparency for dashboard panels
-DASHBOARD_SCALE_MAX = 1.2  # Maximum scale factor for large videos
+# Primary Colors (BGR format) - Professional Dark Theme
+COLOR_PRIMARY = (220, 140, 30)      # Orange/Gold accent
+COLOR_SECONDARY = (180, 90, 200)    # Purple accent
+COLOR_SUCCESS = (100, 200, 50)      # Bright green
+COLOR_DANGER = (50, 50, 255)        # Bright red
+COLOR_WARNING = (0, 200, 255)       # Yellow/Orange
+
+# Background Colors
+COLOR_BG = (30, 30, 30)            # Dark gray background
+COLOR_PANEL_BG = (45, 45, 45)      # Panel background
+COLOR_BORDER = (100, 100, 100)     # Gray border
+
+# Detection Colors
+COLOR_FIGHT = (50, 50, 255)        # Bright red for fight
+COLOR_SAFE = (100, 200, 50)        # Bright green for safe
+COLOR_PERSON = (220, 140, 30)      # Orange for person labels
+
+# Text Colors
+COLOR_TEXT_PRIMARY = (255, 255, 255)   # White text
+COLOR_TEXT_SECONDARY = (200, 200, 200) # Light gray text
+COLOR_TEXT_BG = (45, 45, 45)           # Dark background for text
+
+# Visual Effects
+BOX_THICKNESS = 3                  # Thickness of bounding boxes
+BOX_CORNER_RADIUS = 12             # Rounded corner radius
+LABEL_PADDING = 10                 # Padding inside labels
+SHADOW_ENABLED = True              # Enable drop shadows
+GLOW_ENABLED = True                # Enable glow effects
+
+# Dashboard Design
+DASHBOARD_ALPHA = 0.85             # Transparency for dashboard panels
+DASHBOARD_SCALE_MAX = 1.2          # Maximum scale factor for large videos
+PANEL_CORNER_RADIUS = 15           # Rounded corners for panels
+PANEL_SHADOW_OFFSET = 5            # Shadow offset in pixels
+
+# Typography
+FONT_SCALE_LARGE = 1.0             # Large text
+FONT_SCALE_MEDIUM = 0.8            # Medium text
+FONT_SCALE_SMALL = 0.6             # Small text
+FONT_THICKNESS = 2                 # Font thickness
+
+# Branding (Optional)
+ENABLE_WATERMARK = False           # Show watermark (disabled by default)
+WATERMARK_TEXT = "VAMS"            # Watermark text
+WATERMARK_POSITION = "bottom-right" # Position: top-left, top-right, bottom-left, bottom-right
+WATERMARK_ALPHA = 0.3              # Watermark transparency

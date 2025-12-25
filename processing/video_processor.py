@@ -55,25 +55,55 @@ class VideoProcessor:
             'fight_frames': self.fight_frame_count
         }
     
+    def _get_optimal_codec(self):
+        """
+        Automatically select the best codec based on output file extension.
+
+        Returns:
+            str: Four-character codec code
+        """
+        import os
+
+        # Get file extension
+        _, ext = os.path.splitext(self.output_path)
+        ext = ext.lower()
+
+        # Map extensions to optimal codecs
+        codec_map = {
+            '.mp4': 'mp4v',   # MPEG-4 for MP4 files
+            '.avi': 'XVID',   # XVID for AVI files
+            '.mov': 'mp4v',   # MPEG-4 for MOV files
+            '.mkv': 'X264',   # H.264 for MKV files
+            '.webm': 'VP80',  # VP8 for WebM files
+        }
+
+        # Get codec from map or use config default
+        codec = codec_map.get(ext, config.FOURCC)
+
+        print(f"📝 Auto-selected codec: {codec} for {ext} format")
+        return codec
+
     def _initialize_video_writer(self):
-       
+
         first_video = cv2.VideoCapture(self.video_paths[0])
-        
+
         if not first_video.isOpened():
             raise RuntimeError(f"❌ Error: Could not open first video: {self.video_paths[0]}")
-        
+
         width = int(first_video.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(first_video.get(cv2.CAP_PROP_FRAME_HEIGHT))
         fps = first_video.get(cv2.CAP_PROP_FPS)
         fps = config.DEFAULT_FPS if fps == 0 else fps
         first_video.release()
-        
-        # Create video writer
-        fourcc = cv2.VideoWriter_fourcc(*config.FOURCC)
+
+        # Dynamically select optimal codec
+        codec_string = self._get_optimal_codec()
+        fourcc = cv2.VideoWriter_fourcc(*codec_string)
+
         self.video_writer = cv2.VideoWriter(
             self.output_path, fourcc, fps, (width, height)
         )
-        
+
         print(f"📹 Output video: {width}x{height} @ {fps} FPS")
     
     def _process_video(self, video_path):

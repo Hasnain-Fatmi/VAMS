@@ -51,10 +51,10 @@ def test_imports():
         return False
 
     try:
-        from visualization.dashboard import draw_advanced_dashboard
-        print(f"[OK] Dashboard module imported successfully")
+        from visualization.visuals import draw_advanced_dashboard
+        print(f"[OK] Visuals module imported successfully")
     except ImportError as e:
-        print(f"[FAIL] Failed to import Dashboard module: {e}")
+        print(f"[FAIL] Failed to import Visuals module: {e}")
         return False
 
     try:

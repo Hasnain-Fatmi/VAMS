@@ -1,9 +1,9 @@
 """
 Visualization package for fight detection system.
-Provides dashboard rendering components.
+Provides visual rendering components.
 """
 
-from .dashboard import draw_advanced_dashboard
+from .visuals import draw_advanced_dashboard
 
 __all__ = [
     'draw_advanced_dashboard',
