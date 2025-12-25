@@ -7,30 +7,34 @@ from visualization import draw_advanced_dashboard
 
 
 class VideoProcessor:
-    
-    def __init__(self, video_paths=None, output_path=None):
+
+    def __init__(self, video_paths=None, output_path=None, progress_callback=None, headless=False):
         """
         Initialize video processor.
-        
+
         Args:
             video_paths: List of input video paths (defaults to config)
             output_path: Output video path (defaults to config)
+            progress_callback: Optional callback function(frame, stats) for real-time updates
+            headless: If True, disable cv2.imshow (for web UI)
         """
         self.video_paths = video_paths or config.VIDEO_PATHS
         self.output_path = output_path or config.OUTPUT_PATH
-        
+        self.progress_callback = progress_callback
+        self.headless = headless
+
         # Initialize detectors
         self.fight_detector = FightDetector()
         self.person_tracker = PersonTracker()
-        
+
         # Statistics
         self.frame_count = 0
         self.fight_frame_count = 0
-        
+
         # Temporal state
         self.fight_history = deque(maxlen=config.WINDOW)
         self.graph_history = deque(maxlen=config.GRAPH_HISTORY_SIZE)
-        
+
         # Video writer
         self.video_writer = None
         
@@ -125,14 +129,24 @@ class VideoProcessor:
             
             # Process frame
             self._process_frame(frame)
-            
-            # Write and display
+
+            # Write frame
             self.video_writer.write(frame)
-            cv2.imshow("Fight Detection", frame)
-            
-            # Check for quit
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+
+            # Show preview (only if not headless)
+            if not self.headless:
+                cv2.imshow("Fight Detection", frame)
+
+                # Check for quit
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+
+            # Send progress update to callback (every frame)
+            if self.progress_callback:
+                self.progress_callback(frame, {
+                    'current_frame': self.frame_count,
+                    'fight_frames': self.fight_frame_count
+                })
         
         cap.release()
     
@@ -164,10 +178,13 @@ class VideoProcessor:
             self.fight_frame_count += 1
     
     def _cleanup(self):
-        
+
         if self.video_writer:
             self.video_writer.release()
-        cv2.destroyAllWindows()
+
+        # Only destroy windows if not headless
+        if not self.headless:
+            cv2.destroyAllWindows()
     
     def _print_summary(self):
         
