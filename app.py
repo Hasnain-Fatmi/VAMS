@@ -171,8 +171,8 @@ if 'processed_video' in st.session_state:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Video player
-    st.video(st.session_state['processed_video'])
+    # # Video player
+    # st.video(st.session_state['processed_video'])
 
     # Buttons
     st.download_button(

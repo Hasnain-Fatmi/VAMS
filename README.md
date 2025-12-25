@@ -1,3 +1,14 @@
+---
+title: VAMS - Violence Detection System
+emoji: 🎥
+colorFrom: purple
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.52.2
+app_file: app.py
+pinned: false
+---
+
 # VAMS - Violence Analysis & Monitoring System
 
 A real-time video processing system that detects fights and tracks people using advanced YOLO deep learning models. VAMS provides comprehensive violence detection with visual analytics through an intelligent dashboard overlay.

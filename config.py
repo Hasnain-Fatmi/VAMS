@@ -6,17 +6,21 @@ Contains all settings, paths, and constants.
 # ========================
 # MODEL PATHS
 # ========================
-FIGHT_MODEL_PATH = r"G:\Github\VAMS\weights\last.pt"
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent.resolve()
+FIGHT_MODEL_PATH = os.path.join(BASE_DIR, "weights", "last.pt")
 PERSON_MODEL_PATH = "yolo11x.pt"  # Ultralytics will auto-download if not found
 
 # ========================
 # VIDEO PATHS
 # ========================
 VIDEO_PATHS = [
-    r"G:\Github\VAMS\videos\newfi37.avi",
+    os.path.join(BASE_DIR, "videos", "newfi37.avi"),
 ]
 
-OUTPUT_PATH = r"G:\Github\VAMS\output_fight_detection.mp4"
+OUTPUT_PATH = os.path.join(BASE_DIR, "output_fight_detection.mp4")
 
 # ========================
 # DETECTION PARAMETERS
