@@ -261,7 +261,6 @@ FIGHT_TRIGGER = 8
 ## Output
 
 ### Console Output
-```
 The system generates:
 - A merged video file with all detections and dashboard overlay
 - Console output showing processing progress
@@ -271,11 +270,10 @@ The system generates:
   - Fight percentage
 
 ### Video Output
+
 - **Format**: MP4 (H.264)
 - **Codec**: XVID with fallback to mp4v
 - **Resolution**: Same as input video
 - **FPS**: Same as input video
 - **Overlay**: Advanced dashboard with real-time analytics
-
----
 
